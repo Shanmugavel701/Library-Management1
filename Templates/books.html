@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Books</h2>
+<!-- Display the list of books here -->
+{% for book in books %}
+<p>
+    {{ book.name }} by {{ book.author }}
+    (Stock: {{ book.quantity }})
+
+    <form action="{{ url_for('issue_book', book_id=book.id, member_id=selected_member_id) }}" method="post" style="display: inline;">
+        <input type="submit" value="Issue">
+    </form>
+
+    <form action="{{ url_for('return_book', book_id=book.id, member_id=selected_member_id) }}" method="post" style="display: inline;">
+        <input type="submit" value="Return">
+    </form>
+</p>
+{% endfor %}
+{% endblock %}
